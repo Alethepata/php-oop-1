@@ -1,10 +1,17 @@
 <?php
 class Movie{
+    public $name;
 
+    function __construct($_name){
+        $this->name = $_name;
+    }
 }
 
-$barbie = new Movie();
-$batman = new Movie();
+$barbie = new Movie('Barbie');
+$batman = new Movie('Batman');
+
+var_dump($barbie);
+var_dump($batman);
 
 ?>
 <!DOCTYPE html>
