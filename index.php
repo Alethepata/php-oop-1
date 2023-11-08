@@ -1,10 +1,16 @@
 <?php
 
-require_once __DIR__ . '/Traits/Published.php';
-require_once __DIR__ . '/model/Production.php';
-require_once __DIR__ . '/model/Movie.php';
-require_once __DIR__ . '/model/SerieTv.php';
-require_once __DIR__ . '/db/db.php';
+try{
+
+    require_once __DIR__ . '/Traits/Published.php';
+    require_once __DIR__ . '/model/Production.php';
+    require_once __DIR__ . '/model/Movie.php';
+    require_once __DIR__ . '/model/SerieTv.php';
+    require_once __DIR__ . '/db/db.php';
+    
+}catch(Excpetion $e){
+    echo $e->getMessage();
+}
 
 ?>
 <!DOCTYPE html>
@@ -17,6 +23,7 @@ require_once __DIR__ . '/db/db.php';
 </head>
 <body>
     <div class="container mt-5 d-flex flex-wrap">
+        
         <?php 
         foreach($productions as $production):
         ?>
