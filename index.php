@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . '/Traits/Published.php';
 require_once __DIR__ . '/model/Production.php';
 require_once __DIR__ . '/model/Movie.php';
 require_once __DIR__ . '/model/SerieTv.php';
@@ -25,7 +26,7 @@ require_once __DIR__ . '/db/db.php';
                 <h1 class="text-center my-3"><?php echo $production-> name ?></h1>
 
                 <h4>Anno :</h4>
-                <p><?php echo $production-> yearReleased ?></p>
+                <p><?php echo $production->getDate() ?></p>
 
                 <?php if(isset($production-> seasons)): ?>
                     <h4>Stagioni:</h4>
