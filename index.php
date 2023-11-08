@@ -1,41 +1,9 @@
 <?php
-class Movie{
-    public $name;
-    public $discount = 0;
-    public $yearReleased = 0;
 
-    function __construct($_name){
-        $this->name = $_name;
-    }
-    
-    public function setYearReleased($_years){
-        $this->yearReleased = $_years;
-        if($_years < 2000){
-            $this->discount = 60;
-        }else{
-            $this->discount = 10;
-        }
-    }
-}
-
-$barbie = new Movie('Barbie');
-$barbie->setYearReleased(2023);
-
-$batman = new Movie('Batman');
-$batman->setYearReleased(1989);
-
-$ilGiganteDiFerro = new Movie('Il gigante di ferro');
-$ilGiganteDiFerro->setYearReleased(1989);
-
-$RalphSpaccatutto = new Movie('Ralph Spaccatutto');
-$RalphSpaccatutto->setYearReleased(2012);
-
-$movie = [
-    $barbie,
-    $batman,
-    $ilGiganteDiFerro,
-    $RalphSpaccatutto
-];
+require_once __DIR__ . '/model/Production.php';
+require_once __DIR__ . '/model/Movie.php';
+require_once __DIR__ . '/model/SerieTv.php';
+require_once __DIR__ . '/db/db.php';
 
 ?>
 <!DOCTYPE html>
@@ -47,16 +15,40 @@ $movie = [
     <title>php-oop-1</title>
 </head>
 <body>
-    <div class="container mt-5 d-flex">
+    <div class="container mt-5 d-flex flex-wrap">
         <?php 
-        foreach($movie as $item):
+        foreach($productions as $production):
         ?>
         <div class="card w-25 px-3">
-            <h1 class="text-center my-3"><?php echo $item-> name ?></h1>
-            <h4>Anno :</h4>
-            <p><?php echo $item-> yearReleased ?></p>
-            <h4>Sconto :</h4>
-            <p><?php echo $item-> discount ?> %</p>
+            <div class="card-text">
+
+                <h1 class="text-center my-3"><?php echo $production-> name ?></h1>
+
+                <h4>Anno :</h4>
+                <p><?php echo $production-> yearReleased ?></p>
+
+                <?php if(isset($production-> seasons)): ?>
+                    <h4>Stagioni:</h4>
+                    <p><?php echo $production-> seasons ?></p>
+                <?php endif;?>
+
+                <?php if(isset($production-> episodes)): ?>
+                    <h4>Episodi:</h4>
+                    <p><?php echo $production-> episodes ?></p>
+                <?php endif;?>
+
+                <?php if(isset($production-> last_year)): ?>
+                    <h4>Terminato:</h4>
+                    <p><?php echo $production-> last_year ?></p>
+                <?php endif;?>
+
+                <?php if(isset($production-> time)): ?>
+                    <h4>Durata:</h4>
+                    <p><?php echo $production-> time ?></p>
+                <?php endif;?>
+
+            </div>
+            
         </div>
         <?php 
         endforeach;
